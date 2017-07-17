@@ -22,9 +22,12 @@ build:
     - python setup.py test
 
 requirements:
-  build:
+  host:
     - python
     - yaml
+
+  build:
+    - {{ compiler('c') }}
 
   run:
     - python
