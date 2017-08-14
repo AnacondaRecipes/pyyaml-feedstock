@@ -43,8 +43,12 @@ about:
   license: MIT
   license_family: MIT
   summary: YAML parser and emitter for Python
+  description: |
+    YAML is a data serialization format designed for human readability and interaction with
+    scripting languages.
+  doc_url: http://pyyaml.org/wiki/PyYAMLDocumentation
+  doc_source_url: http://pyyaml.org/browser/pyyaml/trunk/README
   dev_url: https://github.com/yaml/pyyaml
-  doc_url: http://pyyaml.org/wiki/PyYAML
 
 extra:
   recipe-maintainers:
