@@ -27,6 +27,7 @@ requirements:
 
   host:
     - python
+    - cython
     - yaml
 
   run:
