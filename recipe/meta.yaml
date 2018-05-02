@@ -10,10 +10,14 @@ package:
 source:
   git_url: https://github.com/yaml/pyyaml.git
   git_tag: {{ version }}
+  patches:
+    - 0001-Ensure-we-do-not-end-up-wih-CRLF-line-endings-on-tes.patch
 
 build:
   number: {{ build }}
   script:
+    - del ext\_yaml.c  # [win]
+    - rm ext/_yaml.c   # [not win]
     - python setup.py --with-libyaml build_ext --include-dirs="${PREFIX}/include" --library-dirs="${PREFIX}/lib"  # [unix]
     - python setup.py --with-libyaml build_ext --include-dirs="%LIBRARY_INC%" --library-dirs="%LIBRARY_LIB%"      # [win]
     - python setup.py install
