@@ -20,9 +20,6 @@ build:
     # Because CRLF:
     - git rm -q --cached -r tests/data  # [win]
     - git reset --hard                  # [win]
-    # Because really old Cython and lack of dependencies:
-    - del ext\_yaml.c                   # [win]
-    - rm ext/_yaml.c                    # [not win]
     - python setup.py --with-libyaml build_ext --include-dirs="${PREFIX}/include" --library-dirs="${PREFIX}/lib"  # [unix]
     - python setup.py --with-libyaml build_ext --include-dirs="%LIBRARY_INC%" --library-dirs="%LIBRARY_LIB%"      # [win]
     - python setup.py install
