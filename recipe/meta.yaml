@@ -1,4 +1,4 @@
-{% set version = "5.3.1" %}
+{% set version = "5.4" %}
 
 package:
   name: pyyaml
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/P/PyYAML/PyYAML-{{ version }}.tar.gz
-  sha256: b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d
+  sha256: 3c49e39ac034fd64fd576d63bb4db53cda89b362768a67f07749d55f128ac18a
   patches:
     - 0001-Ensure-we-do-not-end-up-wih-CRLF-line-endings-on-tes.patch
 
