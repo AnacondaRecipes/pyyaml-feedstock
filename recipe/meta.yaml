@@ -22,8 +22,8 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - patch  # [now win]
     - m2-patch  # [win]
+    - patch  # [now win]
   host:
     - python
     - cython
