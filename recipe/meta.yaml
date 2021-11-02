@@ -1,4 +1,4 @@
-{% set version = "5.4.1" %}
+{% set version = "6.0" %}
 
 package:
   name: pyyaml
@@ -6,12 +6,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/P/PyYAML/PyYAML-{{ version }}.tar.gz
-  sha256: 607774cbba28732bfa802b54baa7484215f530991055bb562efbed5b2f20a45e
+  sha256: 68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2
   patches:
     - 0001-Ensure-we-do-not-end-up-wih-CRLF-line-endings-on-tes.patch
 
 build:
-  number: 1
+  number: 0
+  skip: True  # [py<36]
   script:
     - python setup.py --with-libyaml build_ext --include-dirs="${PREFIX}/include" --library-dirs="${PREFIX}/lib"  # [unix]
     - python setup.py --with-libyaml build_ext --include-dirs="%LIBRARY_INC%" --library-dirs="%LIBRARY_LIB%"      # [win]
@@ -21,9 +22,13 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - m2-patch  # [win]
+    - patch  # [not win]
   host:
     - python
     - cython
+    - setuptools
+    - wheel
     - yaml
   run:
     - python
@@ -33,6 +38,11 @@ test:
   imports:
     - yaml
     - _yaml   # [python_impl == "cpython"]
+  requires:
+    - pip
+  commands:
+    # temporarily skipping pip check on win and pypy build because of bizarre tqdm issue
+    - pip check  # [not (win and python_impl == 'pypy')]
 
 about:
   home: http://pyyaml.org/wiki/PyYAML
