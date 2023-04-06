@@ -30,11 +30,11 @@ requirements:
     - patch  # [not win]
   host:
     - python
-    - cython
+    - cython 0.29.24
     - setuptools
     - pip
     - wheel
-    - yaml
+    - yaml 0.2.5
   run:
     - python
     - yaml
@@ -50,7 +50,7 @@ test:
     - pip check  # [not (win and python_impl == 'pypy')]
 
 about:
-  home: http://pyyaml.org/wiki/PyYAML
+  home: https://pyyaml.org/wiki/PyYAML
   license_file: LICENSE
   license: MIT
   license_family: MIT
@@ -58,7 +58,7 @@ about:
   description: |
     YAML is a data serialization format designed for human readability and interaction with
     scripting languages.
-  doc_url: http://pyyaml.org/wiki/PyYAMLDocumentation
+  doc_url: https://pyyaml.org/wiki/PyYAMLDocumentation
   dev_url: https://github.com/yaml/pyyaml
 
 extra:
