@@ -30,7 +30,7 @@ requirements:
     - patch  # [not win]
   host:
     - python
-    - cython 0.29.24
+    - cython 0.29.32
     - setuptools
     - pip
     - wheel
