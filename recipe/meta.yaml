@@ -1,4 +1,4 @@
-{% set version = "6.0" %}
+{% set version = "5.4.1" %}
 
 package:
   name: pyyaml
@@ -6,16 +6,16 @@ package:
 
 source:
   url: https://pypi.io/packages/source/P/PyYAML/PyYAML-{{ version }}.tar.gz
-  sha256: 68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2
+  sha256: 607774cbba28732bfa802b54baa7484215f530991055bb562efbed5b2f20a45e
   patches:
     - 0001-Ensure-we-do-not-end-up-wih-CRLF-line-endings-on-tes.patch
 
 build:
-  number: 1
+  number: 2
   skip: True  # [py<36]
   script:
     - >-
-        "{{ PYTHON }}" -m pip install .
+        "{{ PYTHON }}" -m pip install . -vv --no-deps --no-build-isolation
         --global-option="--with-libyaml"
         --global-option="build_ext"
         --global-option="-I${PREFIX}/include"  # [unix]
@@ -30,11 +30,11 @@ requirements:
     - patch  # [not win]
   host:
     - python
-    - cython
+    - cython 0.29.32
     - setuptools
     - pip
     - wheel
-    - yaml
+    - yaml 0.2.5
   run:
     - python
     - yaml
@@ -50,7 +50,7 @@ test:
     - pip check  # [not (win and python_impl == 'pypy')]
 
 about:
-  home: http://pyyaml.org/wiki/PyYAML
+  home: https://pyyaml.org/wiki/PyYAML
   license_file: LICENSE
   license: MIT
   license_family: MIT
@@ -58,8 +58,7 @@ about:
   description: |
     YAML is a data serialization format designed for human readability and interaction with
     scripting languages.
-  doc_url: http://pyyaml.org/wiki/PyYAMLDocumentation
-  doc_source_url: http://pyyaml.org/browser/pyyaml/trunk/README
+  doc_url: https://pyyaml.org/wiki/PyYAMLDocumentation
   dev_url: https://github.com/yaml/pyyaml
 
 extra:
