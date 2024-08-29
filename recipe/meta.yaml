@@ -22,7 +22,8 @@ requirements:
     - patch  # [not win]
   host:
     - python
-    - cython <3.0
+    - cython  # [py<313]
+    - cython >=3.0  # [py>313]
     - setuptools
     - pip
     - wheel
