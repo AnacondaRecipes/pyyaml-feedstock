@@ -1,32 +1,30 @@
 {% set name = "PyYAML" %}
-{% set version = "6.0.2" %}
+{% set version = "6.0.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0]|lower }}/{{ name|lower }}/{{ name|lower }}-{{ version }}.tar.gz
-  sha256: d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e
+  url: https://pypi.org/packages/source/{{ name[0]|lower }}/{{ name|lower }}/{{ name|lower }}-{{ version }}.tar.gz
+  sha256: d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f
   patches:
     - 0001-Ensure-we-do-not-end-up-wih-CRLF-line-endings-on-tes.patch
 
 build:
   number: 0
-  skip: True  # [py<38]
+  skip: true  # [py<38]
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - m2-patch  # [win]
-    - patch  # [not win]
   host:
     - python
     - cython
     - setuptools
     - pip
-    - wheel
-    - yaml 0.2.5
+    - yaml {{ yaml }}
   run:
     - python
     - yaml
@@ -34,13 +32,17 @@ requirements:
 test:
   imports:
     - yaml
+  source_files:
+    - tests/
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - pytest -v tests
 
 about:
-  home: https://pyyaml.org/wiki/PyYAML
+  home: https://pyyaml.org
   license_file: LICENSE
   license: MIT
   license_family: MIT
